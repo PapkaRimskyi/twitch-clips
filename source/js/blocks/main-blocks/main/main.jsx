@@ -1,0 +1,66 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useEffect, Suspense, lazy } from 'react';
+import PropTypes from 'prop-types';
+
+import { Switch, Route } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import requestData from '../../../redux/actions/thunk-action/request-data';
+import { addToFavorite } from '../../../redux/actions/favorite/favorite';
+
+import MainTag from './styled';
+
+import SuspenseFallback from '../../components/blocks/suspense-fallback/suspense-fallback';
+
+const UserVideo = lazy(() => import('./user-video/user-video'));
+const Favorite = lazy(() => import('./favorite/favorite'));
+
+function Main({ videoList, favoriteList, dataRequest, addFavorite }) {
+  // После монтирования сработает useEffect, который попытается найти коллекцию избранного favoriteList в localStorage.
+  // Если найдёт, то запушит в redux.
+
+  useEffect(() => {
+    const localStorageFavoriteList = JSON.parse(localStorage.getItem('favoriteList'));
+    if (localStorageFavoriteList && localStorageFavoriteList.length) {
+      addFavorite(localStorageFavoriteList);
+    }
+  }, []);
+
+  //
+
+  return (
+    <MainTag>
+      <Suspense fallback={<SuspenseFallback />}>
+        <Switch>
+          <Route path="/channel" render={(props) => (<UserVideo {...props} videoList={videoList} dataRequest={dataRequest} favoriteList={favoriteList} addFavorite={addFavorite} />)} />
+          <Route exact path="/favorite" render={(props) => (<Favorite {...props} favoriteList={favoriteList} />)} />
+        </Switch>
+      </Suspense>
+    </MainTag>
+  );
+}
+
+Main.propTypes = {
+  videoList: PropTypes.shape({
+    requested: PropTypes.bool.isRequired,
+    data: PropTypes.objectOf(PropTypes.string),
+    err: PropTypes.string,
+  }).isRequired,
+  favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataRequest: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    videoList: state.videoList,
+    favoriteList: state.favoriteList,
+  };
+}
+
+const mapDispatchToProps = {
+  dataRequest: requestData,
+  addFavorite: addToFavorite,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
