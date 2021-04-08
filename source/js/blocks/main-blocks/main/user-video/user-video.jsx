@@ -1,8 +1,9 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import usePrevious from '../../../../custom-hooks/use-previous';
+import * as qs from 'query-string';
 
 import LoadStatus from '../../../components/blocks/load-status/load-status';
 
@@ -11,36 +12,30 @@ import VideoCollection from '../../../components/blocks/video-collection/video-c
 import VisuallyHidden from '../../../../style/uniq-component/visually-hidden';
 import setDocumentTitle from '../../../../utils/set-document-title';
 
-export default function UserVideo({ location, videoList, dataRequest, favoriteList, addFavorite }) {
-  const currentLocation = useMemo(() => `${location.pathname}/${location.search}`, [`${location.pathname}/${location.search}`]);
-  const prevLocation = usePrevious(currentLocation);
+export default function UserVideo({ location, videoList, dataRequest, favoriteList, addFavorite, resetData }) {
+  const channelName = useMemo(() => qs.parse(location.search).channelName, [qs.parse(location.search).channelName]);
 
-  const abortController = useMemo(() => new AbortController(), [currentLocation]);
+  const abortController = new AbortController();
 
   // При изменении currentLocation происходит запрос данных.
 
   useEffect(() => {
-    dataRequest(location, abortController.signal);
-    setDocumentTitle(`${location.search.slice(1)} videos`);
+    dataRequest(channelName, abortController.signal);
+    setDocumentTitle(`${channelName} videos`);
     return () => {
       abortController.abort();
+      resetData();
     };
-  }, [currentLocation]);
+  }, [channelName]);
 
   //
 
-  // prevLocation === currentLocation. Предотвращаю рендеринг компонента, если пользователь вернулся по роуту назад.
-
   return (
     <section>
-      <VisuallyHidden>User videos.</VisuallyHidden>
+      <VisuallyHidden>User videos</VisuallyHidden>
       {videoList.requested || videoList.err
         ? <LoadStatus postData={videoList} dataRequest={dataRequest} signal={abortController.signal} />
-        : (
-          prevLocation === currentLocation
-            ? <VideoCollection postData={videoList.info.data} postDataLength={videoList.info.data.length} favoriteList={favoriteList} addFavorite={addFavorite} />
-            : null
-        )}
+        : <VideoCollection postData={videoList.info ? videoList.info.data : null} favoriteList={favoriteList} addFavorite={addFavorite} />}
     </section>
   );
 }
@@ -60,4 +55,5 @@ UserVideo.propTypes = {
   dataRequest: PropTypes.func.isRequired,
   favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
   addFavorite: PropTypes.func.isRequired,
+  resetData: PropTypes.func.isRequired,
 };

@@ -1,4 +1,4 @@
-import { DATA_RECEIVED, DATA_REQUESTED, DATA_NOT_RECEIVED } from '../../actions-name/actions-name';
+import { DATA_RECEIVED, DATA_REQUESTED, DATA_NOT_RECEIVED, DATA_RESET } from '../../actions-name/actions-name';
 
 export function dataRequestSended() {
   return {
@@ -17,5 +17,11 @@ export function dataNotReceived(err) {
   return {
     type: DATA_NOT_RECEIVED,
     err,
+  };
+}
+
+export function dataReset() {
+  return {
+    type: DATA_RESET,
   };
 }

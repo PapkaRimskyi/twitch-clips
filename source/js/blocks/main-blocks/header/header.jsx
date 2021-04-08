@@ -27,7 +27,7 @@ function Header({ loadStatus }) {
   function preventSubmitForm(e) {
     e.preventDefault();
     if (!loadStatus) {
-      history.push(`/channel/?${searchText.toLowerCase()}`);
+      history.push(`/channel/?channelName=${searchText.toLowerCase()}`);
       setSearchText('');
     }
   }
