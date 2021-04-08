@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requestData from '../../../redux/actions/thunk-action/request-data';
 import { addToFavorite } from '../../../redux/actions/favorite/favorite';
+import { dataReset } from '../../../redux/actions/user-video/user-video';
 
 import MainTag from './styled';
 
@@ -15,7 +16,7 @@ import SuspenseFallback from '../../components/blocks/suspense-fallback/suspense
 const UserVideo = lazy(() => import('./user-video/user-video'));
 const Favorite = lazy(() => import('./favorite/favorite'));
 
-function Main({ videoList, favoriteList, dataRequest, addFavorite }) {
+function Main({ videoList, favoriteList, dataRequest, addFavorite, resetData }) {
   // После монтирования сработает useEffect, который попытается найти коллекцию избранного favoriteList в localStorage.
   // Если найдёт, то запушит в redux.
 
@@ -32,7 +33,19 @@ function Main({ videoList, favoriteList, dataRequest, addFavorite }) {
     <MainTag>
       <Suspense fallback={<SuspenseFallback />}>
         <Switch>
-          <Route path="/channel" render={(props) => (<UserVideo {...props} videoList={videoList} dataRequest={dataRequest} favoriteList={favoriteList} addFavorite={addFavorite} />)} />
+          <Route
+            path="/channel"
+            render={(props) => (
+              <UserVideo
+                {...props}
+                videoList={videoList}
+                dataRequest={dataRequest}
+                favoriteList={favoriteList}
+                addFavorite={addFavorite}
+                resetData={resetData}
+              />
+            )}
+          />
           <Route exact path="/favorite" render={(props) => (<Favorite {...props} favoriteList={favoriteList} />)} />
         </Switch>
       </Suspense>
@@ -49,6 +62,7 @@ Main.propTypes = {
   favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
   dataRequest: PropTypes.func.isRequired,
   addFavorite: PropTypes.func.isRequired,
+  resetData: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -61,6 +75,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   dataRequest: requestData,
   addFavorite: addToFavorite,
+  resetData: dataReset,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
