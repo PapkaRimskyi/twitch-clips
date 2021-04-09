@@ -9,7 +9,7 @@ import requestData from '../../../redux/actions/thunk-action/request-data';
 import { addToFavorite } from '../../../redux/actions/favorite/favorite';
 import { dataReset } from '../../../redux/actions/user-video/user-video';
 
-import MainTag from './styled';
+import MainTag from './styled-main';
 
 import SuspenseFallback from '../../components/blocks/suspense-fallback/suspense-fallback';
 

@@ -25,7 +25,18 @@ export const MEDIA_SIZES = {
 
 //
 
-// Размеры картиной под разные размеры.
+// Размеры header'а
+
+export const HEADER_HEIGHT = {
+  desktop: 63,
+  tablet: 63,
+  mobileToTablet: 170,
+  mobile: 212,
+};
+
+//
+
+// Размеры картинки под разные размеры.
 
 export const IMG_SIZES = {
   desktop: [MEDIA_SIZES.desktop, 558],

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LinkToFavoritePage, Svg } from '../styled';
+import { LinkToFavoritePage, Svg } from '../styled-favorite';
 
 export default function LinkToFavoriteButton() {
   return (

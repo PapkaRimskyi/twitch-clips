@@ -9,7 +9,7 @@ import FavoriteButton from '../../buttons/favorite-button/favorite-button';
 
 import defineWidthAndHeightImage from '../../../../utils/define-width-and-height-image';
 
-import { VideoList, VideoItem, LinkToVideo, Img, Empty } from './styled';
+import { VideoList, VideoItem, LinkToVideo, Img, Empty } from './styled-video-collection';
 
 import { IMG_SIZES, MEDIA_SIZES } from '../../../../style/variables';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useLocation } from 'react-router-dom';
 
-import TryAgainButton from './styled';
+import TryAgainButton from './styled-try-load-again';
 
 export default function TryLoadAgain({ dataRequest, signal }) {
   const location = useLocation();

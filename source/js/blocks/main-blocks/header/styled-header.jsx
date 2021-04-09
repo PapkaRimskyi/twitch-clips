@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { BLACK_COLOR, MARGIN_AUTO, MEDIA_SIZES } from '../../../style/variables';
 
 export const HeaderTag = styled.header`
-  margin-bottom: 25px;
+  position: fixed;
+  top: 0;
   padding: 10px 0;
   width: 100%;
   border-bottom: 2px solid rgb(236, 236, 236);
   border-top: 2px solid rgb(236, 236, 236);
   background-color: rgb(248, 247, 248);
+  z-index: 1000;
 `;
 
 export const Container = styled.div`

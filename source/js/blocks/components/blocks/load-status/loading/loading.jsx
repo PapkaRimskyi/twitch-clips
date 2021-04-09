@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LoadingSVG } from '../styled';
+import { LoadingSVG } from '../styled-load-status';
 
 export default function Loading() {
   return (

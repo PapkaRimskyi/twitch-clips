@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import ErrorIcon from './error-icon';
 
-import { ErrorDescription } from '../styled';
-import TryAgainButton from '../try-load-again/styled';
+import { ErrorDescription } from '../styled-load-status';
+import TryAgainButton from '../try-load-again/styled-try-load-again';
 import setDocumentTitle from '../../../../../utils/set-document-title';
 
 export default function Error({ errCode, dataRequest, signal }) {

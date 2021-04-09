@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ErrorSVG } from '../styled';
+import { ErrorSVG } from '../styled-load-status';
 
 export default function Error() {
   return (

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import LinkToFavoriteButton from '../../components/buttons/link-to-favorite-button/link-to-favorite-button';
 
-import { HeaderTag, Container, Form, Fieldset, InputLabel, Input, SubmitButton } from './styled';
+import { HeaderTag, Container, Form, Fieldset, InputLabel, Input, SubmitButton } from './styled-header';
 
 function Header({ loadStatus }) {
   const [searchText, setSearchText] = useState('');
