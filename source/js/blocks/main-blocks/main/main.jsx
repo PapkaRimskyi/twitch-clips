@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import requestData from '../../../redux/actions/thunk-action/request-data';
+import { requestVideo, requestMoreVideo } from '../../../redux/actions/thunk-action/request-data';
 import { addToFavorite } from '../../../redux/actions/favorite/favorite';
 import { dataReset } from '../../../redux/actions/user-video/user-video';
 
@@ -16,7 +16,7 @@ import SuspenseFallback from '../../components/blocks/suspense-fallback/suspense
 const UserVideo = lazy(() => import('./user-video/user-video'));
 const Favorite = lazy(() => import('./favorite/favorite'));
 
-function Main({ videoList, favoriteList, dataRequest, addFavorite, resetData }) {
+function Main({ videoList, favoriteList, getVideo, getMoreVideo, addFavorite, resetData }) {
   // После монтирования сработает useEffect, который попытается найти коллекцию избранного favoriteList в localStorage.
   // Если найдёт, то запушит в redux.
 
@@ -39,8 +39,9 @@ function Main({ videoList, favoriteList, dataRequest, addFavorite, resetData }) 
               <UserVideo
                 {...props}
                 videoList={videoList}
-                dataRequest={dataRequest}
                 favoriteList={favoriteList}
+                getVideo={getVideo}
+                getMoreVideo={getMoreVideo}
                 addFavorite={addFavorite}
                 resetData={resetData}
               />
@@ -60,7 +61,8 @@ Main.propTypes = {
     err: PropTypes.string,
   }).isRequired,
   favoriteList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dataRequest: PropTypes.func.isRequired,
+  getVideo: PropTypes.func.isRequired,
+  getMoreVideo: PropTypes.func.isRequired,
   addFavorite: PropTypes.func.isRequired,
   resetData: PropTypes.func.isRequired,
 };
@@ -73,7 +75,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  dataRequest: requestData,
+  getVideo: requestVideo,
+  getMoreVideo: requestMoreVideo,
   addFavorite: addToFavorite,
   resetData: dataReset,
 };
