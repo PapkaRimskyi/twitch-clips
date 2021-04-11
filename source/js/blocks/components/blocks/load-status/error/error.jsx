@@ -19,7 +19,7 @@ export default function Error({ errCode, dataRequest, signal }) {
       case '400':
         return 'Wrong search query';
       case '404':
-        return 'Not found';
+        return 'This user does not exist';
       default:
         return null;
     }

@@ -5,15 +5,17 @@ import PropTypes from 'prop-types';
 
 import * as qs from 'query-string';
 
-import LoadStatus from '../../../components/blocks/load-status/load-status';
+import { isUserScolledToEnd, isScrollButtonExist } from '../../../../utils/window-properties';
+import debounce from '../../../../utils/debounce';
+import setDocumentTitle from '../../../../utils/set-document-title';
 
 import VideoCollection from '../../../components/blocks/video-collection/video-collection';
 
 import VisuallyHidden from '../../../../style/uniq-component/visually-hidden';
 
-import { isUserScolledToEnd, isScrollButtonExist } from '../../../../utils/window-properties';
-import debounce from '../../../../utils/debounce';
-import setDocumentTitle from '../../../../utils/set-document-title';
+import LoadStatus from '../../../components/blocks/load-status/load-status';
+import { LoadingSpinnerContainer } from '../../../components/blocks/load-status/styled-load-status';
+import Loading from '../../../components/blocks/load-status/loading/loading';
 
 export default function UserVideo({ location, videoList, favoriteList, getVideo, getMoreVideo, addFavorite, resetData }) {
   const channelName = useMemo(() => qs.parse(location.search).channelName, [qs.parse(location.search).channelName]);
@@ -38,7 +40,7 @@ export default function UserVideo({ location, videoList, favoriteList, getVideo,
   // Вешаю обработчик на скролл для загрузки новых видео
 
   useEffect(() => {
-    if (videoList.info && videoList.info.data.length && isScrollButtonExist() && videoList.info.pagination.cursor) {
+    if (isScrollButtonExist() && videoList.info && videoList.info.data.length && videoList.info.pagination.cursor) {
       document.addEventListener('scroll', debounceLoadExtraVideo);
     }
     return () => {
@@ -51,7 +53,7 @@ export default function UserVideo({ location, videoList, favoriteList, getVideo,
   // Если пользователь доскролил до конца, то шлётся запрос для загрузки следующих видео
 
   function loadExtraVideo() {
-    if (isUserScolledToEnd()) {
+    if (isUserScolledToEnd() && !videoList.requestedMoreData) {
       getMoreVideo(videoList.info.userID, abortController.signal, videoList.info.pagination.cursor);
     }
   }
@@ -59,11 +61,16 @@ export default function UserVideo({ location, videoList, favoriteList, getVideo,
   //
 
   return (
-    <section>
+    <section style={{ position: 'relative' }}>
       <VisuallyHidden>User videos</VisuallyHidden>
       {videoList.requested || videoList.err
         ? <LoadStatus postData={videoList} dataRequest={getVideo} signal={abortController.signal} />
-        : <VideoCollection postData={videoList.info && videoList.info.data} favoriteList={favoriteList} addFavorite={addFavorite} />}
+        : (
+          <>
+            <VideoCollection postData={videoList.info && videoList.info.data} favoriteList={favoriteList} addFavorite={addFavorite} />
+            {videoList.requestedMoreData && <LoadingSpinnerContainer><Loading /></LoadingSpinnerContainer>}
+          </>
+        )}
     </section>
   );
 }
@@ -72,6 +79,7 @@ UserVideo.propTypes = {
   location: PropTypes.objectOf(PropTypes.string).isRequired,
   videoList: PropTypes.shape({
     requested: PropTypes.bool.isRequired,
+    requestedMoreData: PropTypes.bool.isRequired,
     info: PropTypes.shape({
       data: PropTypes.arrayOf(PropTypes.object),
       pagination: PropTypes.shape({
