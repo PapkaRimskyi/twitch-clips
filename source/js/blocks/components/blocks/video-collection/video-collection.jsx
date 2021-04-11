@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { useLocation } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { removeFromFavorite } from '../../../../redux/actions/favorite/favorite';
 
@@ -14,6 +16,7 @@ import { VideoList, VideoItem, LinkToVideo, Img, Empty } from './styled-video-co
 import { IMG_SIZES, MEDIA_SIZES } from '../../../../style/variables';
 
 function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }) {
+  const location = useLocation();
   // Компонент рендерится в двух местах: в избранном и при рендере списка с видео пользователя.
   // В случае, если рендерится список с видео пользователя, то передаются и postData и favoriteList пропс.
   // Но если пользователь зашёл в раздел "Избранное", то в postData будет находится favoriteList, а сам favoriteList будет пустым.
@@ -40,6 +43,17 @@ function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }
 
   //
 
+  // Определяю текст для блока Empty на основе location.
+
+  function defineEmptyTextByUrl() {
+    if (location.pathname.includes('favorite')) {
+      return 'No favorite VODs in your collection';
+    }
+    return 'No VODs by this user';
+  }
+
+  //
+
   return (
     postData !== null
       ? (
@@ -61,7 +75,7 @@ function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }
               ))}
             </VideoList>
           )
-          : <Empty>No VODs by this user</Empty>
+          : <Empty>{defineEmptyTextByUrl()}</Empty>
       )
       : null
   );
