@@ -1,21 +1,34 @@
-import { DATA_RECEIVED, DATA_REQUESTED, DATA_NOT_RECEIVED, DATA_RESET } from '../../actions-name/actions-name';
+import { VIDEO_REQUEST, EXTRA_VIDEO_REQUEST, VIDEO_RECEIVED, EXTRA_VIDEO_RECEIVED, VIDEO_NOT_RECEIVED, DATA_RESET } from '../../actions-name/actions-name';
 
-export function dataRequestSended() {
+export function sendVideoRequest() {
   return {
-    type: DATA_REQUESTED,
+    type: VIDEO_REQUEST,
   };
 }
 
-export function dataReceived(data) {
+export function sendExtraVideoRequest() {
   return {
-    type: DATA_RECEIVED,
+    type: EXTRA_VIDEO_REQUEST,
+  };
+}
+
+export function videoReceived(data) {
+  return {
+    type: VIDEO_RECEIVED,
+    data,
+  };
+}
+
+export function extraVideoReceived(data) {
+  return {
+    type: EXTRA_VIDEO_RECEIVED,
     data,
   };
 }
 
 export function dataNotReceived(err) {
   return {
-    type: DATA_NOT_RECEIVED,
+    type: VIDEO_NOT_RECEIVED,
     err,
   };
 }

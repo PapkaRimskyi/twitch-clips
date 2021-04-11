@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FavoriteBtn, Svg } from '../styled';
+import { FavoriteBtn, Svg } from '../styled-favorite';
 
 import { WHITE_COLOR, IN_FAVORITE_COLOR } from '../../../../style/variables';
 

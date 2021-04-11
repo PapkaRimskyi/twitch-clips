@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import ErrorIcon from './error-icon';
 
-import { ErrorDescription } from '../styled';
-import TryAgainButton from '../try-load-again/styled';
+import { ErrorDescription } from '../styled-load-status';
+import TryAgainButton from '../try-load-again/styled-try-load-again';
 import setDocumentTitle from '../../../../../utils/set-document-title';
 
 export default function Error({ errCode, dataRequest, signal }) {
@@ -19,7 +19,7 @@ export default function Error({ errCode, dataRequest, signal }) {
       case '400':
         return 'Wrong search query';
       case '404':
-        return 'Not found';
+        return 'This user does not exist';
       default:
         return null;
     }

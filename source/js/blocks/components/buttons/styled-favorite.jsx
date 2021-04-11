@@ -15,7 +15,7 @@ export const FavoriteBtn = styled.button`
   right: 2%;
   display: block;
   transition: opacity .6s;
-  z-index: 2000;
+  z-index: 101;
 
   &:hover + a::after,
   &:focus + a::after {

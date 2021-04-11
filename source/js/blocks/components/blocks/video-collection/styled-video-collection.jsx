@@ -47,7 +47,7 @@ export const LinkToVideo = styled.a`
     background-color: rgba(0, 0, 0, .5);
     box-sizing: border-box;
     transition: box-shadow .6s;
-    z-index: 1000;
+    z-index: 100;
   }
 
   &:hover,

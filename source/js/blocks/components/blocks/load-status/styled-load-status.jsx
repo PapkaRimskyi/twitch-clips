@@ -47,3 +47,15 @@ export const LoadingSVG = styled(SVG)`
 export const ErrorSVG = styled(SVG)`
   animation: ${pulse} 1s infinite alternate;
 `;
+
+export const LoadingSpinnerContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  & > ${LoadingSVG} {
+    fill: #68be16;
+  }
+`;

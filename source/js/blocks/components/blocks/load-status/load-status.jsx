@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from './styled';
+import { Container } from './styled-load-status';
 
 import Error from './error/error';
 import Loading from './loading/loading';
