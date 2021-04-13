@@ -7,10 +7,6 @@ const MainTag = styled.main`
   padding-top: calc(${HEADER_HEIGHT.mobile}px + 10px);
   width: 90%;
 
-  @media (min-width: ${MEDIA_SIZES.mobileToTablet}) {
-    padding-top: calc(${HEADER_HEIGHT.mobileToTablet}px + 10px);
-  }
-
   @media (min-width: ${MEDIA_SIZES.tablet}) {
     padding-top: calc(${HEADER_HEIGHT.tablet}px + 10px);
   }

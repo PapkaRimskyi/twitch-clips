@@ -30,8 +30,7 @@ export const MEDIA_SIZES = {
 export const HEADER_HEIGHT = {
   desktop: 63,
   tablet: 63,
-  mobileToTablet: 170,
-  mobile: 212,
+  mobile: 107,
 };
 
 //

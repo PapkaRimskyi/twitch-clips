@@ -30,12 +30,14 @@ export const Container = styled.div`
 export const Form = styled.form`
   margin-bottom: 20px;
   width: 100%;
+  display: flex;
+  align-items: flex-end;
 
   @media (min-width: ${MEDIA_SIZES.tablet}) {
     margin-right: 20px;
     margin-bottom: 0;
     width: 80%;
-    display: flex;
+    flex-wrap: nowrap;
   }
 
   @media (min-width: ${MEDIA_SIZES.desktop}) {
@@ -44,25 +46,21 @@ export const Form = styled.form`
 `;
 
 export const Fieldset = styled.fieldset`
-  margin-bottom: 25px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
 
-  @media (min-width: ${MEDIA_SIZES.mobileToTablet}) {
-    flex-direction: row;
-    justify-content: space-around;
-  }
 
   @media (min-width: ${MEDIA_SIZES.tablet}) {
     margin-right: 25px;
     margin-bottom: 0;
+    justify-content: space-around;
+    align-items: center;
   }
 `;
 
 export const Input = styled.input`
   padding: 5px 10px;
-  width: 50%;
+  width: 70%;
   font-size: 1.5rem;
   line-height: 1.7rem;
   border: none;
@@ -87,6 +85,7 @@ export const Input = styled.input`
 
 export const InputLabel = styled.label`
   margin-bottom: 15px;
+  display: none;
   font-size: 1.5rem;
   line-height: 1.7rem;
   cursor: pointer;
@@ -95,18 +94,16 @@ export const InputLabel = styled.label`
     opacity: 1;
   }
 
-  @media (min-width: ${MEDIA_SIZES.mobileToTablet}) {
-    margin-bottom: 0;
-  }
-
   @media (min-width: ${MEDIA_SIZES.tablet}) {
+    margin-bottom: 0;
     display: inline;
   }
 `;
 
 export const SubmitButton = styled.button`
-  margin: ${MARGIN_AUTO};
+  margin-left: auto;
   padding: 5px 10px;
+  max-width: 200px;
   width: 50%;
   display: block;
   font-size: 1.4rem;

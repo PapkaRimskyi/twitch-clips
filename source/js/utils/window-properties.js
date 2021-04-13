@@ -6,7 +6,7 @@ function getWindowProperty() {
     document.body.offsetHeight, document.documentElement.offsetHeight,
     document.body.clientHeight, document.documentElement.clientHeight,
   );
-  const userDocumentHeight = document.documentElement.clientHeight;
+  const userDocumentHeight = window.innerHeight;
   const currentScroll = window.pageYOffset;
   return { documentHeight, userDocumentHeight, currentScroll };
 }
@@ -17,7 +17,7 @@ function getWindowProperty() {
 
 export function isUserScolledToEnd() {
   const { documentHeight, userDocumentHeight, currentScroll } = getWindowProperty();
-  return documentHeight - userDocumentHeight === currentScroll;
+  return documentHeight - userDocumentHeight === Math.round(currentScroll);
 }
 
 //
