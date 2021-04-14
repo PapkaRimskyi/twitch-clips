@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { WHITE_COLOR, OUTLINE_COLOR } from '../../../../style/variables';
+import { WHITE_COLOR, OUTLINE_COLOR, MEDIA_SIZES } from '../../../../style/variables';
 
 export const Empty = styled.p`
   font-size: 2rem;
@@ -16,13 +16,28 @@ export const VideoList = styled.ul`
 
 export const VideoItem = styled.li`
   position: relative;
-  margin: 0 10px;
-  margin-bottom: 25px;
-  max-width: 500px;
+  margin-bottom: 15px;
+  width: 90%;
+  min-height: 170px;
+
+  @media (min-width: ${MEDIA_SIZES.mobileToTablet}) {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 25px;
+  }
+
+  @media (min-width: ${MEDIA_SIZES.tablet}) {
+    width: 45%;
+  }
+
+  @media (min-width: ${MEDIA_SIZES.desktop}) {
+    width: 30%;
+  }
 `;
 
 export const LinkToVideo = styled.a`
   position: relative;
+  width: 100%;
   display: inline-block;
 
   &::after {

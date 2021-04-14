@@ -31,7 +31,7 @@ export function requestVideo(channelName, signal) {
       const userID = parsedUserData.data[0].id;
       const videoData = await fetch(`${mainApiPath}videos?user_id=${parsedUserData.data[0].id}`, authorizObj);
       const parsedVideoData = await videoData.json();
-      dispatch(videoReceived({ ...optimizeData(parsedVideoData), userID }));
+      await dispatch(videoReceived({ ...optimizeData(parsedVideoData), userID }));
     } catch (err) {
       dispatch(dataNotReceived(err.message));
     }
