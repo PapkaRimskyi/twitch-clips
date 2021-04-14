@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { NavLink } from 'react-router-dom';
 
-import { IN_FAVORITE_COLOR, WHITE_COLOR } from '../../../style/variables';
+import { IN_FAVORITE_COLOR, MEDIA_SIZES, WHITE_COLOR } from '../../../style/variables';
 
 export const Svg = styled.svg`
   fill: ${(props) => props.fillColor || WHITE_COLOR};
@@ -23,8 +23,20 @@ export const FavoriteBtn = styled.button`
   }
 
   &:hover ${Svg},
-  &:focus ${Svg} {
+  &:focus-visible ${Svg} {
     fill: ${IN_FAVORITE_COLOR};
+  }
+
+  & > svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: ${MEDIA_SIZES.desktop}) {
+    & > svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 `;
 

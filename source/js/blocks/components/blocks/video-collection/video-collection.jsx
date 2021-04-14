@@ -68,7 +68,7 @@ function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }
                       <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.desktop)} media={`(min-width: ${MEDIA_SIZES.desktop})`} />
                       <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.tablet)} media={`(min-width: ${MEDIA_SIZES.tablet})`} />
                       <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.mobileToTablet)} media={`(min-width: ${MEDIA_SIZES.mobileToTablet})`} />
-                      <Img src={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.mobile)} loading="lazy" alt="Thumbnail" />
+                      <Img src={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.mobile)} loading="lazy" alt="VOD preview" />
                     </picture>
                   </LinkToVideo>
                 </VideoItem>

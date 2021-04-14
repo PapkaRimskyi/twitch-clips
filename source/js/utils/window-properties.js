@@ -15,18 +15,9 @@ function getWindowProperty() {
 
 // Проверка, доскролил ли пользователь до конца документа
 
-export function isUserScolledToEnd() {
+export default function isUserScolledToEnd() {
   const { documentHeight, userDocumentHeight, currentScroll } = getWindowProperty();
   return documentHeight - userDocumentHeight === Math.round(currentScroll);
-}
-
-//
-
-// Проверка, существует ли прокрутка на странице
-
-export function isScrollButtonExist() {
-  const { documentHeight, userDocumentHeight } = getWindowProperty();
-  return documentHeight > userDocumentHeight;
 }
 
 //

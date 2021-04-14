@@ -5,7 +5,7 @@ import { HEADER_HEIGHT, MARGIN_AUTO, MEDIA_SIZES } from '../../../style/variable
 const MainTag = styled.main`
   margin: ${MARGIN_AUTO};
   padding-top: calc(${HEADER_HEIGHT.mobile}px + 10px);
-  width: 90%;
+  width: 95%;
 
   @media (min-width: ${MEDIA_SIZES.tablet}) {
     padding-top: calc(${HEADER_HEIGHT.tablet}px + 10px);

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import * as qs from 'query-string';
 
-import { isUserScolledToEnd, isScrollButtonExist } from '../../../../utils/window-properties';
+import isUserScolledToEnd from '../../../../utils/window-properties';
 import debounce from '../../../../utils/debounce';
 import setDocumentTitle from '../../../../utils/set-document-title';
 
@@ -17,12 +17,14 @@ import LoadStatus from '../../../components/blocks/load-status/load-status';
 import { LoadingSpinnerContainer } from '../../../components/blocks/load-status/styled-load-status';
 import Loading from '../../../components/blocks/load-status/loading/loading';
 
+import { DELAY_BEFORE_LOAD } from '../../../../variables';
+
 export default function UserVideo({ location, videoList, favoriteList, getVideo, getMoreVideo, addFavorite, resetData }) {
   const channelName = useMemo(() => qs.parse(location.search).channelName, [qs.parse(location.search).channelName]);
 
   const abortController = new AbortController();
 
-  const debounceLoadExtraVideo = useMemo(() => debounce(loadExtraVideo, 1000), [videoList.info]);
+  const debounceLoadExtraVideo = useMemo(() => debounce(loadExtraVideo, DELAY_BEFORE_LOAD), [videoList.info]);
 
   // При изменении channelName происходит запрос данных.
 
@@ -40,7 +42,7 @@ export default function UserVideo({ location, videoList, favoriteList, getVideo,
   // Вешаю обработчик на скролл для загрузки новых видео
 
   useEffect(() => {
-    if (isScrollButtonExist() && videoList.info && videoList.info.data.length && videoList.info.pagination.cursor) {
+    if (videoList.info && videoList.info.data.length && videoList.info.pagination.cursor) {
       document.addEventListener('scroll', debounceLoadExtraVideo);
     }
     return () => {

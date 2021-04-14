@@ -18,16 +18,11 @@ export const VideoItem = styled.li`
   position: relative;
   margin: 0 10px;
   margin-bottom: 25px;
-  min-width: 300px;
-  width: 500px;
-  height: 300px;
-  background-color: #9b9898;
+  max-width: 500px;
 `;
 
 export const LinkToVideo = styled.a`
   position: relative;
-  width: 100%;
-  height: 100%;
   display: inline-block;
 
   &::after {
@@ -67,6 +62,5 @@ export const LinkToVideo = styled.a`
 
 export const Img = styled.img`
   width: 100%;
-  height: 100%;
   display: block;
 `;
