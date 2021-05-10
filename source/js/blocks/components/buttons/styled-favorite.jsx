@@ -32,7 +32,7 @@ export const FavoriteBtn = styled.button`
     height: 40px;
   }
 
-  @media (min-width: ${MEDIA_SIZES.desktop}) {
+  @media (min-width: ${MEDIA_SIZES.desktop}px) {
     & > svg {
       width: 25px;
       height: 25px;

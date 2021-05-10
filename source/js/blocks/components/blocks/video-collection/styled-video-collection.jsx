@@ -20,17 +20,17 @@ export const VideoItem = styled.li`
   width: 90%;
   min-height: 170px;
 
-  @media (min-width: ${MEDIA_SIZES.mobileToTablet}) {
+  @media (min-width: ${MEDIA_SIZES.mobileToTablet}px) {
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 25px;
   }
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     width: 45%;
   }
 
-  @media (min-width: ${MEDIA_SIZES.desktop}) {
+  @media (min-width: ${MEDIA_SIZES.desktop}px) {
     width: 30%;
   }
 `;

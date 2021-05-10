@@ -7,11 +7,11 @@ const MainTag = styled.main`
   padding-top: calc(${HEADER_HEIGHT.mobile}px + 10px);
   width: 95%;
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     padding-top: calc(${HEADER_HEIGHT.tablet}px + 10px);
   }
 
-  @media (min-width: ${MEDIA_SIZES.desktop}) {
+  @media (min-width: ${MEDIA_SIZES.desktop}px) {
     padding-top: calc(${HEADER_HEIGHT.desktop}px + 10px);
   }
 `;

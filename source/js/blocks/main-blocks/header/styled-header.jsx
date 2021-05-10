@@ -21,7 +21,7 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     width: 80%;
     justify-content: space-between;
   }
@@ -33,14 +33,14 @@ export const Form = styled.form`
   display: flex;
   align-items: flex-end;
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     margin-right: 20px;
     margin-bottom: 0;
     width: 80%;
     flex-wrap: nowrap;
   }
 
-  @media (min-width: ${MEDIA_SIZES.desktop}) {
+  @media (min-width: ${MEDIA_SIZES.desktop}px) {
     width: auto;
   }
 `;
@@ -50,7 +50,7 @@ export const Fieldset = styled.fieldset`
   justify-content: flex-start;
 
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     margin-right: 25px;
     margin-bottom: 0;
     justify-content: space-around;
@@ -78,7 +78,7 @@ export const Input = styled.input`
     opacity: 1;
   }
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     width: 40%;
   }
 `;
@@ -94,7 +94,7 @@ export const InputLabel = styled.label`
     opacity: 1;
   }
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     margin-bottom: 0;
     display: inline;
   }
@@ -124,7 +124,7 @@ export const SubmitButton = styled.button`
     opacity: .3;
   }
 
-  @media (min-width: ${MEDIA_SIZES.tablet}) {
+  @media (min-width: ${MEDIA_SIZES.tablet}px) {
     margin: 0;
     width: auto;
     display: inline-block;

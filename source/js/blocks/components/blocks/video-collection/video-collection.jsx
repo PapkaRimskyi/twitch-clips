@@ -7,13 +7,9 @@ import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeFromFavorite } from '../../../../redux/actions/favorite/favorite';
 
-import FavoriteButton from '../../buttons/favorite-button/favorite-button';
+import VideoItem from './video-item/video-item';
 
-import defineWidthAndHeightImage from '../../../../utils/define-width-and-height-image';
-
-import { VideoList, VideoItem, LinkToVideo, Img, Empty } from './styled-video-collection';
-
-import { IMG_SIZES, MEDIA_SIZES } from '../../../../style/variables';
+import { VideoList, Empty } from './styled-video-collection';
 
 function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }) {
   const location = useLocation();
@@ -61,17 +57,7 @@ function VideoCollection({ postData, favoriteList, addFavorite, removeFavorite }
           ? (
             <VideoList onClick={favoriteHandler}>
               {postData.map((clip) => (
-                <VideoItem key={clip.id}>
-                  <FavoriteButton id={clip.id} inFavorite={Boolean(data.find((item) => item.id === clip.id))} />
-                  <LinkToVideo href={`${clip.url}`} target="_blank" clipTitle={clip.title}>
-                    <picture>
-                      <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.desktop)} media={`(min-width: ${MEDIA_SIZES.desktop})`} />
-                      <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.tablet)} media={`(min-width: ${MEDIA_SIZES.tablet})`} />
-                      <source srcSet={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.mobileToTablet)} media={`(min-width: ${MEDIA_SIZES.mobileToTablet})`} />
-                      <Img src={defineWidthAndHeightImage(clip.thumbnail_url, ...IMG_SIZES.mobile)} loading="lazy" alt="VOD preview" />
-                    </picture>
-                  </LinkToVideo>
-                </VideoItem>
+                <VideoItem key={clip.id} clip={clip} inFavorite={Boolean(data.find((item) => item.id === clip.id))} />
               ))}
             </VideoList>
           )

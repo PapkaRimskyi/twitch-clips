@@ -17,10 +17,10 @@ export const WHITE_COLOR = '#ffffff';
 // Размеры для breakpoint'ов
 
 export const MEDIA_SIZES = {
-  desktop: '992px',
-  tablet: '768px',
-  mobileToTablet: '576px',
-  mobile: '320px',
+  desktop: 992,
+  tablet: 768,
+  mobileToTablet: 576,
+  mobile: 320,
 };
 
 //
